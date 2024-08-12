@@ -10,7 +10,8 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
         Main mainApp = new Main();
-        mainApp.start(game);
+        Board board = new Board();
+        mainApp.start(game, board);
     }
 
     private static final List<String> validMoves = Arrays.asList(
@@ -19,22 +20,22 @@ public class Main {
             "abajo izquierda", "abajo centro", "abajo derecha"
     );
 
-    public void start(Game game) {
+    public void start(Game game, Board board) {
         System.out.println("Bienvenido al juego de Tic-Tac-Toe!");
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            Board.displayBoard();
+            board.displayBoard();
             String input = scanner.nextLine().trim().toLowerCase();  //Captura lo que el usuario escribiera y lo convierte en minus
 
             if (isValidCharacter(input)) {
 
-                Board.playerMove(input);
+                board.playerMove(input);
                 if (gameStatus(game)) {
                     game.endGame();
                     break;
 
-                    Board.computerMove(input);
+                    board.computerMove();
                     if (gameStatus(game)) {
                         System.out.println("¡El juego ha terminado!");
                         game.endGame();
@@ -47,12 +48,13 @@ public class Main {
             scanner.close();
         }
 
-        public boolean gameStatus(Game game) {
+        public boolean gameStatus (Game game){
             //Revisa si se gano o si se empeato
             return game.checkWin() || game.checkDraw();
         }
 
-        public boolean isValidCharacter(String input) {
+        public boolean isValidCharacter (String input){
             return validMoves.contains(input);
         }
     }
+}
