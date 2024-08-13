@@ -11,6 +11,9 @@ public final class Game {
     }
 
     public boolean checkWin(char[][] matrix) {
+        if (checkDraw(matrix)){
+            return false;
+        }
         return checkRows(matrix) || checkColumns(matrix) || checkDiagonals(matrix);
     }
 
@@ -49,9 +52,6 @@ public final class Game {
             }
         }
         return true;
-    }
-
-    public void endGame() {
     }
 
     public int[] parseUserInput(String input) {
