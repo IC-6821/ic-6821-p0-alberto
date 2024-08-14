@@ -17,16 +17,26 @@ public class Main {
             System.out.println("Introduce un movimiento: ");
             String userInput = scanner.nextLine().trim().toLowerCase();
 
-            int[] coordinates = Game.parseUserInput(userInput);
-            int row = coordinates[0];
-            int col = coordinates[1];
+            int[] coordinates;
+            int row, col;
 
-            while (!Game.isValidPosition(row, col, board.board) || !game.isValidCharacter(userInput)) {
-                System.out.println("Movimiento no valido, intentalo de nuevo.");
-                userInput = scanner.nextLine().trim().toLowerCase();
+            while (true) {
+                if (!game.isValidCharacter(userInput)) {
+                    System.out.println("Movimiento no válido, intenta de nuevo.");
+                    userInput = scanner.nextLine().trim().toLowerCase();
+                    continue;
+                }
+
                 coordinates = Game.parseUserInput(userInput);
                 row = coordinates[0];
                 col = coordinates[1];
+
+                if (Game.isValidPosition(row, col, board.board)) {
+                    break;
+                } else {
+                    System.out.println("La casilla ya está ocupada. Inténtalo de nuevo.");
+                    userInput = scanner.nextLine().trim().toLowerCase();
+                }
             }
 
             Player.makeMove(row, col, board.board, 'X');
