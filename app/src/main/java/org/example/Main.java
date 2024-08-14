@@ -13,7 +13,7 @@ public class Main {
         board.displayBoard();
 
         while (!gameOver) {
-            //turno del jugador
+            /* turno del jugador */
             System.out.println("Introduce un movimiento: ");
             String userInput = scanner.nextLine().trim().toLowerCase();
 
@@ -41,7 +41,7 @@ public class Main {
 
             Player.makeMove(boardRow, boardColumn, board.board, 'X');
 
-            //llamadas a game para verificar el estado del juego
+            /* llamadas a game para verificar el estado del juego */
             if (game.checkWin(board.board)) {
                 System.out.println("Felicidades, has ganado.");
                 gameOver = true;
@@ -52,7 +52,7 @@ public class Main {
                 break;
             }
 
-            //turno de la maquina
+            /* turno de la maquina */
             int[] computerCoordinates = computerPlayer.getComputerCoordinates(board.board);
             int computerRow = computerCoordinates[0];
             int computerCol = computerCoordinates[1];
@@ -61,7 +61,7 @@ public class Main {
 
             board.displayBoard();
 
-            //llamadas a game para verificar el estado del juego
+            /* llamadas a game para verificar el estado del juego */
             if (game.checkWin(board.board)) {
                 System.out.println("La computadora ha ganado.");
                 gameOver = true;

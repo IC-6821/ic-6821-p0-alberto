@@ -4,7 +4,7 @@ public class Board {
     public char[][] board;
     private final int boardSize = 3;
 
-    //Constructor del tablero como una matriz
+    /** Constructor del tablero como una matriz */
     public Board() {
         board = new char[boardSize][boardSize];
         for (int i = 0; i < boardSize; i++) {

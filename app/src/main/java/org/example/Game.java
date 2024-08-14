@@ -20,12 +20,15 @@ public final class Game {
         if (checkDraw(gameBoard)){
             return false;
         }
-        return checkRows(gameBoard) || checkColumns(gameBoard) || checkDiagonals(gameBoard);
+        return checkRows(gameBoard) || checkColumns(gameBoard)
+                || checkDiagonals(gameBoard);
     }
 
     private boolean checkRows(char[][] gameBoard) {
         for (int boardRow = 0; boardRow < gameBoardSize; boardRow++) {
-            if (gameBoard[boardRow][0] == gameBoard[boardRow][1] && gameBoard[boardRow][1] == gameBoard[boardRow][2] && gameBoard[boardRow][0] != ' ') {
+            if ((gameBoard[boardRow][0] == gameBoard[boardRow][1])
+                    && (gameBoard[boardRow][1] == gameBoard[boardRow][2])
+                    && (gameBoard[boardRow][0] != ' ')) {
                 return true;
             }
         }
@@ -34,7 +37,9 @@ public final class Game {
 
     private boolean checkColumns(char[][] gameBoard) {
         for (int boardColumn = 0; boardColumn < gameBoardSize; boardColumn++) {
-            if (gameBoard[0][boardColumn] == gameBoard[1][boardColumn] && gameBoard[1][boardColumn] == gameBoard[2][boardColumn] && gameBoard[0][boardColumn] != ' ') {
+            if ((gameBoard[0][boardColumn] == gameBoard[1][boardColumn])
+                    && (gameBoard[1][boardColumn] == gameBoard[2][boardColumn])
+                    && (gameBoard[0][boardColumn] != ' ')) {
                 return true;
             }
         }
@@ -42,8 +47,12 @@ public final class Game {
     }
 
     private boolean checkDiagonals(char[][] gameBoard) {
-        if ((gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2] && gameBoard[0][0] != ' ')
-                || (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0] && gameBoard[0][2] != ' ')) {
+        if (((gameBoard[0][0] == gameBoard[1][1])
+                && (gameBoard[1][1] == gameBoard[2][2])
+                && (gameBoard[0][0] != ' '))
+                || ((gameBoard[0][2] == gameBoard[1][1])
+                && (gameBoard[1][1] == gameBoard[2][0])
+                && (gameBoard[0][2] != ' '))) {
             return true;
         }
         return false;
@@ -77,7 +86,8 @@ public final class Game {
                 placeInColumn = 2;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid column placement: " + words[0]);
+                throw new IllegalArgumentException("Invalid column placement: "
+                        + words[0]);
         }
 
         switch (words[1]) {
@@ -97,7 +107,9 @@ public final class Game {
         return new int[]{placeInColumn, placeInRow};
     }
 
-    public static boolean isValidPosition(int boardRow, int boardColumn, char[][] gameBoard) {return gameBoard[boardRow][boardColumn] == ' ';
+    public static boolean isValidPosition(int boardRow, int boardColumn,
+                                          char[][] gameBoard) {
+        return gameBoard[boardRow][boardColumn] == ' ';
     }
     
     public boolean isValidUserInput(String input){
