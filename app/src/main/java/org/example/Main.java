@@ -30,7 +30,7 @@ public class Main {
 
             if (isValidCharacter(input)) {
 
-                board.playerMove(input);
+                game.playerMove(input);
                 if (gameStatus(game)) {
                     game.endGame();
                     break;

@@ -3,50 +3,47 @@ package org.example;
 import java.util.Random;
 
 public final class Game {
-    public static final int BOARD_SIZE = 3;
-    private Board board;
+    public static final int gameBoardSize = 3;
+    private Board gameBoard;
 
     public Game() {
-        board = new Board();
+        gameBoard = new Board();
     }
 
-    public boolean checkWin(char[][] matrix) {
-        if (checkDraw(matrix)){
+    public boolean checkWin(char[][] gameBoard) {
+        if (checkDraw(gameBoard)){
             return false;
         }
-        return checkRows(matrix) || checkColumns(matrix) || checkDiagonals(matrix);
+        return checkRows(gameBoard) || checkColumns(gameBoard) || checkDiagonals(gameBoard);
     }
 
-    private boolean checkRows(char[][] matrix) {
-        for (int row = 0; row < BOARD_SIZE; row++) {
-            if (matrix[row][0] == matrix[row][1] && matrix[row][1] == matrix[row][2] && matrix[row][0] != ' ') {
+    private boolean checkRows(char[][] gameBoard) {
+        for (int boardRow = 0; boardRow < gameBoardSize; boardRow++) {
+            if (gameBoard[boardRow][0] == gameBoard[boardRow][1] && gameBoard[boardRow][1] == gameBoard[boardRow][2] && gameBoard[boardRow][0] != ' ') {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean checkColumns(char[][] matrix) {
-        for (int column = 0; column < BOARD_SIZE; column++) {
-            if (matrix[0][column] == matrix[1][column] && matrix[1][column] == matrix[2][column] && matrix[0][column] != ' ') {
+    private boolean checkColumns(char[][] gameBoard) {
+        for (int boardColumn = 0; boardColumn < gameBoardSize; boardColumn++) {
+            if (gameBoard[0][boardColumn] == gameBoard[1][boardColumn] && gameBoard[1][boardColumn] == gameBoard[2][boardColumn] && gameBoard[0][boardColumn] != ' ') {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean checkDiagonals(char[][] matrix) {
-        if ((matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2] && matrix[0][0] != ' ')
-                || (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0] && matrix[0][2] != ' ')) {
-            return true;
-        }
-        return false;
+    private boolean checkDiagonals(char[][] gameBoard) {
+        return (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2] && gameBoard[0][0] != ' ')
+                || (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0] && gameBoard[0][2] != ' ');
     }
 
-    public boolean checkDraw(char[][] matrix) {
-        for (int row = 0; row < BOARD_SIZE; row++) {
-            for (int column = 0; column < BOARD_SIZE; column++) {
-                if (matrix[row][column] == ' ') {
+    public boolean checkDraw(char[][] gameBoard) {
+        for (int boardRow = 0; boardRow < gameBoardSize; boardRow++) {
+            for (int boardColumn = 0; boardColumn < gameBoardSize; boardColumn++) {
+                if (gameBoard[boardRow][boardColumn] == ' ') {
                     return false;
                 }
             }
@@ -54,73 +51,71 @@ public final class Game {
         return true;
     }
 
-    public int[] parseUserInput(String input) {
-        final String[] words = input.split(" ");
+    private int[] convertUserInputToPosition(String playerInput) {
+        final String[] words = playerInput.split(" ");
 
-        final int yCoordinate;
-        final int xCoordinate;
+        final int placeInColumn, placeInRow;
 
         switch (words[0]) {
             case "arriba":
-                yCoordinate = 0;
+                placeInColumn = 0;
                 break;
             case "medio":
-                yCoordinate = 1;
+                placeInColumn = 1;
                 break;
             case "abajo":
-                yCoordinate = 2;
+                placeInColumn = 2;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid y-coordinate word: " + words[0]);
+                throw new IllegalArgumentException("Invalid column placement: " + words[0]);
         }
 
         switch (words[1]) {
             case "izquierda":
-                xCoordinate = 0;
+                placeInRow = 0;
                 break;
             case "centro":
-                xCoordinate = 1;
+                placeInRow = 1;
                 break;
             case "derecha":
-                xCoordinate = 2;
+                placeInRow = 2;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid x-coordinate word: " + words[1]);
+                throw new IllegalArgumentException("Invalid row placement: " + words[1]);
         }
 
-        return new int[]{yCoordinate, xCoordinate};
+        return new int[]{placeInColumn, placeInRow};
     }
 
-    public boolean isValidMove(char[][] matrix, String input) {
-        final int[] point = parseUserInput(input);
-        final int x = point[1];
-        final int y = point[0];
+    public boolean isValidPlayerMove(char[][] gameBoard, String playerInput) {
+        final int[] pairRowColumn = convertUserInputToPosition(playerInput);
+        final int boardRow = pairRowColumn[1];
+        final int boardColumn = pairRowColumn[0];
 
-        return matrix[x][y] == ' ';
+        return gameBoard[boardRow][boardColumn] == ' ';
     }
 
-    public void playerMove(String input, char[][] matrix) {
+    public void playerMove(String userInput, char[][] gameBoard) {
         char playerSymbol = 'X';
-        if (isValidMove(matrix, input)) {
-            int[] point = parseUserInput(input);
-            matrix[point[0]][point[1]] = playerSymbol;
+        if (isValidPlayerMove(gameBoard, userInput)) {
+            int[] pairRowColumn = convertUserInputToPosition(userInput);
+            gameBoard[pairRowColumn[0]][pairRowColumn[1]] = playerSymbol;
         } else {
-            System.out.println("Movimiento no válido, intenta nuevamente.");
+            System.out.println("Invalid move. Try again.");
         }
     }
 
-    public void computerMove(char[][] matrix) {
+    public void computerMove(char[][] gameBoard) {
         char computerSymbol = 'O';
-        Random random = new Random();
-        int row, col;
+        Random assignRandomMove = new Random();
+        int boardRow, boardColumn;
 
         do {
-            row = random.nextInt(BOARD_SIZE);
-            col = random.nextInt(BOARD_SIZE);
-        } while (matrix[row][col] != ' ');
+            boardRow = assignRandomMove.nextInt(gameBoardSize);
+            boardColumn = assignRandomMove.nextInt(gameBoardSize);
+        } while (gameBoard[boardRow][boardColumn] != ' ');
 
-        matrix[row][col] = computerSymbol;
-        System.out.println("La computadora ha realizado su jugada.");
+        gameBoard[boardRow][boardColumn] = computerSymbol;
     }
 }
 
