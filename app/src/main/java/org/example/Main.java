@@ -27,7 +27,6 @@ public class Main {
             int col = coordinates[1];
 
             Player.makeMove(row, col, board.board, 'X');
-            board.displayBoard();
 
             //llamadas a game para verificar el estado del juego
             if (game.checkWin(board.board)) {
