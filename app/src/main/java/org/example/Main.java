@@ -6,6 +6,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Game game = new Game();
         Board board = new Board();
+        ComputerPlayer computerPlayer = new ComputerPlayer();
         boolean gameOver = false;
 
         System.out.println("¡Bienvenido al Tic-Tac-Toe!");
@@ -21,7 +22,11 @@ public class Main {
                 userInput = scanner.nextLine().trim().toLowerCase();
             }
 
-            game.playerMove(userInput, board.board);
+            int[] coordinates = Game.parseUserInput(userInput);
+            int row = coordinates[0];
+            int col = coordinates[1];
+
+            Player.makeMove(row, col, board.board, 'X');
             board.displayBoard();
 
             //llamadas a game para verificar el estado del juego
@@ -36,7 +41,11 @@ public class Main {
             }
 
             //turno de la maquina
-            game.computerMove(board.board);
+            int[] computerCoordinates = computerPlayer.getComputerCoordinates();
+            int computerRow = computerCoordinates[0];
+            int computerCol = computerCoordinates[1];
+
+            ComputerPlayer.makeMove(computerRow, computerCol, board.board, 'O');
             board.displayBoard();
 
             //llamadas a game para verificar el estado del juego

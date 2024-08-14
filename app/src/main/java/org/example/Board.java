@@ -1,5 +1,4 @@
 package org.example;
-import java.util.Random;
 
 public class Board {
     public char[][] board;
@@ -70,3 +69,4 @@ public class Board {
         return new int[]{row, column};
     }
 }
+

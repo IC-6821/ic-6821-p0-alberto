@@ -61,7 +61,7 @@ public final class Game {
         return true;
     }
 
-    public int[] parseUserInput(String input) {
+    public static int[] parseUserInput(String input) {
         final String[] words = input.split(" ");
 
         final int yCoordinate;
@@ -98,38 +98,10 @@ public final class Game {
         return new int[]{yCoordinate, xCoordinate};
     }
 
-    public boolean isValidMove(char[][] matrix, String input) {
-        final int[] point = parseUserInput(input);
-        final int x = point[1];
-        final int y = point[0];
-
-        return matrix[x][y] == ' ';
+    public static boolean isValidPosition(int row, int col, char[][] board) {
+        return board[row][col] == ' ';
     }
-
-    public void playerMove(String input, char[][] matrix) {
-        char playerSymbol = 'X';
-        if (isValidMove(matrix, input)) {
-            int[] point = parseUserInput(input);
-            matrix[point[0]][point[1]] = playerSymbol;
-        } else {
-            System.out.println("Movimiento no válido, intenta nuevamente.");
-        }
-    }
-
-    public void computerMove(char[][] matrix) {
-        char computerSymbol = 'O';
-        Random random = new Random();
-        int row, col;
-
-        do {
-            row = random.nextInt(BOARD_SIZE);
-            col = random.nextInt(BOARD_SIZE);
-        } while (matrix[row][col] != ' ');
-
-        matrix[row][col] = computerSymbol;
-        System.out.println("La computadora ha realizado su jugada.");
-    }
-
+    
     public boolean isValidCharacter (String input){
         return validMoves.contains(input);
     }
