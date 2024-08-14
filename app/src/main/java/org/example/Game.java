@@ -1,10 +1,9 @@
 package org.example;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 public final class Game {
-    public static final int BOARD_SIZE = 3;
+    public static final int gameBoardSize = 3;
     public Board board;
 
     private static final List<String> validMoves = Arrays.asList(
@@ -17,43 +16,43 @@ public final class Game {
         board = new Board();
     }
 
-    public boolean checkWin(char[][] matrix) {
-        if (checkDraw(matrix)){
+    public boolean checkWin(char[][] gameBoard) {
+        if (checkDraw(gameBoard)){
             return false;
         }
-        return checkRows(matrix) || checkColumns(matrix) || checkDiagonals(matrix);
+        return checkRows(gameBoard) || checkColumns(gameBoard) || checkDiagonals(gameBoard);
     }
 
-    private boolean checkRows(char[][] matrix) {
-        for (int row = 0; row < BOARD_SIZE; row++) {
-            if (matrix[row][0] == matrix[row][1] && matrix[row][1] == matrix[row][2] && matrix[row][0] != ' ') {
+    private boolean checkRows(char[][] gameBoard) {
+        for (int boardRow = 0; boardRow < gameBoardSize; boardRow++) {
+            if (gameBoard[boardRow][0] == gameBoard[boardRow][1] && gameBoard[boardRow][1] == gameBoard[boardRow][2] && gameBoard[boardRow][0] != ' ') {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean checkColumns(char[][] matrix) {
-        for (int column = 0; column < BOARD_SIZE; column++) {
-            if (matrix[0][column] == matrix[1][column] && matrix[1][column] == matrix[2][column] && matrix[0][column] != ' ') {
+    private boolean checkColumns(char[][] gameBoard) {
+        for (int boardColumn = 0; boardColumn < gameBoardSize; boardColumn++) {
+            if (gameBoard[0][boardColumn] == gameBoard[1][boardColumn] && gameBoard[1][boardColumn] == gameBoard[2][boardColumn] && gameBoard[0][boardColumn] != ' ') {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean checkDiagonals(char[][] matrix) {
-        if ((matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2] && matrix[0][0] != ' ')
-                || (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0] && matrix[0][2] != ' ')) {
+    private boolean checkDiagonals(char[][] gameBoard) {
+        if ((gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2] && gameBoard[0][0] != ' ')
+                || (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0] && gameBoard[0][2] != ' ')) {
             return true;
         }
         return false;
     }
 
-    public boolean checkDraw(char[][] matrix) {
-        for (int row = 0; row < BOARD_SIZE; row++) {
-            for (int column = 0; column < BOARD_SIZE; column++) {
-                if (matrix[row][column] == ' ') {
+    public boolean checkDraw(char[][] gameBoard) {
+        for (int BoardRow = 0; BoardRow < gameBoardSize; BoardRow++) {
+            for (int boardColumn = 0; boardColumn < gameBoardSize; boardColumn++) {
+                if (gameBoard[BoardRow][boardColumn] == ' ') {
                     return false;
                 }
             }
@@ -61,47 +60,47 @@ public final class Game {
         return true;
     }
 
-    public static int[] parseUserInput(String input) {
-        final String[] words = input.split(" ");
+    public static int[] convertUserInputToPosition(String userInput) {
+        final String[] words = userInput.split(" ");
 
-        final int yCoordinate;
-        final int xCoordinate;
+        final int placeInColumn;
+        final int placeInRow;
 
         switch (words[0]) {
             case "arriba":
-                yCoordinate = 0;
+                placeInColumn = 0;
                 break;
             case "medio":
-                yCoordinate = 1;
+                placeInColumn = 1;
                 break;
             case "abajo":
-                yCoordinate = 2;
+                placeInColumn = 2;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid y-coordinate word: " + words[0]);
+                throw new IllegalArgumentException("Invalid column placement: " + words[0]);
         }
 
         switch (words[1]) {
             case "izquierda":
-                xCoordinate = 0;
+                placeInRow = 0;
                 break;
             case "centro":
-                xCoordinate = 1;
+                placeInRow = 1;
                 break;
             case "derecha":
-                xCoordinate = 2;
+                placeInRow = 2;
                 break;
             default:
-                throw new IllegalArgumentException("Invalid x-coordinate word: " + words[1]);
+                throw new IllegalArgumentException("Invalid row placement: " + words[1]);
         }
 
-        return new int[]{yCoordinate, xCoordinate};
+        return new int[]{placeInColumn, placeInRow};
     }
 
-    public static boolean isValidPosition(int row, int col, char[][] board) {return board[row][col] == ' ';
+    public static boolean isValidPosition(int boardRow, int boardColumn, char[][] gameBoard) {return gameBoard[boardRow][boardColumn] == ' ';
     }
     
-    public boolean isValidCharacter (String input){
+    public boolean isValidUserInput(String input){
         return validMoves.contains(input);
     }
 }

@@ -18,20 +18,20 @@ public class Main {
             String userInput = scanner.nextLine().trim().toLowerCase();
 
             int[] coordinates;
-            int row, col;
+            int boardRow, boardColumn;
 
             while (true) {
-                if (!game.isValidCharacter(userInput)) {
+                if (!game.isValidUserInput(userInput)) {
                     System.out.println("Movimiento no válido, intenta de nuevo.");
                     userInput = scanner.nextLine().trim().toLowerCase();
                     continue;
                 }
 
-                coordinates = Game.parseUserInput(userInput);
-                row = coordinates[0];
-                col = coordinates[1];
+                coordinates = Game.convertUserInputToPosition(userInput);
+                boardRow = coordinates[0];
+                boardColumn = coordinates[1];
 
-                if (Game.isValidPosition(row, col, board.board)) {
+                if (Game.isValidPosition(boardRow, boardColumn, board.board)) {
                     break;
                 } else {
                     System.out.println("La casilla ya está ocupada. Inténtalo de nuevo.");
@@ -39,7 +39,7 @@ public class Main {
                 }
             }
 
-            Player.makeMove(row, col, board.board, 'X');
+            Player.makeMove(boardRow, boardColumn, board.board, 'X');
 
             //llamadas a game para verificar el estado del juego
             if (game.checkWin(board.board)) {

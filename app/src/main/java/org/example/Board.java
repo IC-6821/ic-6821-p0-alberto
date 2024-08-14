@@ -29,44 +29,5 @@ public class Board {
         }
     }
 
-    public boolean makeMove(int row, int column, char symbol) {
-        if (board[row][column] == ' ') {
-            board[row][column] = symbol;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean isPositionAvailable(int row, int column) {
-        return board[row][column] == ' ';
-    }
-
-    private int[] parseMove(String input) {
-        int row = 0, column = 0;
-
-        switch (input) {
-            case "arriba izquierda":
-                row = 0; column = 0; break;
-            case "arriba centro":
-                row = 0; column = 1; break;
-            case "arriba derecha":
-                row = 0; column = 2; break;
-            case "medio izquierda":
-                row = 1; column = 0; break;
-            case "medio centro":
-                row = 1; column = 1; break;
-            case "medio derecha":
-                row = 1; column = 2; break;
-            case "abajo izquierda":
-                row = 2; column = 0; break;
-            case "abajo centro":
-                row = 2; column = 1; break;
-            case "abajo derecha":
-                row = 2; column = 2; break;
-        }
-
-        return new int[]{row, column};
-    }
 }
 
