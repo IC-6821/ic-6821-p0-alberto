@@ -3,18 +3,16 @@ package org.example;
 import java.util.Random;
 
 public class ComputerPlayer extends Player {
-
-    Board board = new Board();
-    public int[] getComputerCoordinates () {
+    public int[] getComputerCoordinates(char[][] board) {
         Random random = new Random();
-        int row = random.nextInt(3);
-        int col = random.nextInt(3);
+        int row, col;
         while (true) {
-            if (Game.isValidPosition(row, col, board.board)) {
-                break;
-            }
             row = random.nextInt(3);
             col = random.nextInt(3);
+
+            if (Game.isValidPosition(row, col, board)) {
+                break;
+            }
         }
         return new int[]{row, col};
     }

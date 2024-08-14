@@ -53,11 +53,12 @@ public class Main {
             }
 
             //turno de la maquina
-            int[] computerCoordinates = computerPlayer.getComputerCoordinates();
+            int[] computerCoordinates = computerPlayer.getComputerCoordinates(board.board);
             int computerRow = computerCoordinates[0];
             int computerCol = computerCoordinates[1];
 
             ComputerPlayer.makeMove(computerRow, computerCol, board.board, 'O');
+
             board.displayBoard();
 
             //llamadas a game para verificar el estado del juego

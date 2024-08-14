@@ -98,8 +98,7 @@ public final class Game {
         return new int[]{yCoordinate, xCoordinate};
     }
 
-    public static boolean isValidPosition(int row, int col, char[][] board) {
-        return board[row][col] == ' ';
+    public static boolean isValidPosition(int row, int col, char[][] board) {return board[row][col] == ' ';
     }
     
     public boolean isValidCharacter (String input){
