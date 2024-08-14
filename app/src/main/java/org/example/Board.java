@@ -2,7 +2,7 @@ package org.example;
 import java.util.Random;
 
 public class Board {
-        private char[][] board;
+        public char[][] board;
         private final int boardSize = 3;
 
         //Constructor del tablero como una matriz

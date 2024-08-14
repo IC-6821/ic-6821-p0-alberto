@@ -1,10 +1,17 @@
 package org.example;
-
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public final class Game {
     public static final int BOARD_SIZE = 3;
     private Board board;
+
+    private static final List<String> validMoves = Arrays.asList(
+            "arriba izquierda", "arriba centro", "arriba derecha",
+            "medio izquierda", "medio centro", "medio derecha",
+            "abajo izquierda", "abajo centro", "abajo derecha"
+    );
 
     public Game() {
         board = new Board();
@@ -121,6 +128,10 @@ public final class Game {
 
         matrix[row][col] = computerSymbol;
         System.out.println("La computadora ha realizado su jugada.");
+    }
+
+    public boolean isValidCharacter (String input){
+        return validMoves.contains(input);
     }
 }
 
