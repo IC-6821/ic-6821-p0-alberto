@@ -17,14 +17,17 @@ public class Main {
             System.out.println("Introduce un movimiento: ");
             String userInput = scanner.nextLine().trim().toLowerCase();
 
-            while (!game.isValidCharacter(userInput)) {
-                System.out.println("Movimiento no valido, intentalo de nuevo.");
-                userInput = scanner.nextLine().trim().toLowerCase();
-            }
-
             int[] coordinates = Game.parseUserInput(userInput);
             int row = coordinates[0];
             int col = coordinates[1];
+
+            while (!Game.isValidPosition(row, col, board.board) || !game.isValidCharacter(userInput)) {
+                System.out.println("Movimiento no valido, intentalo de nuevo.");
+                userInput = scanner.nextLine().trim().toLowerCase();
+                coordinates = Game.parseUserInput(userInput);
+                row = coordinates[0];
+                col = coordinates[1];
+            }
 
             Player.makeMove(row, col, board.board, 'X');
 
