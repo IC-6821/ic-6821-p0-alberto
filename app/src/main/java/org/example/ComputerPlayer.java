@@ -2,19 +2,23 @@ package org.example;
 
 import java.util.Random;
 
-public class ComputerPlayer extends Player {
-    public int[] getComputerCoordinates(char[][] board) {
-        Random random = new Random();
-        int row, col;
-        while (true) {
-            row = random.nextInt(3);
-            col = random.nextInt(3);
+public class ComputerPlayer implements Player {
+    public static final int BOARD_SIZE = 3;
 
-            if (Game.isValidPosition(row, col, board)) {
-                break;
-            }
+    public void makeMove(Board board, Board.Token playerSymbol) {
+        Board.setCell(generateCoordinatesEasy(board), playerSymbol);
+    }
+
+    public Coordinate generateCoordinatesEasy(Board board) {
+        Random random = new Random();
+        boolean foundAvailablePosition = false;
+        while (!foundAvailablePosition) {
+            int row = random.nextInt(BOARD_SIZE);
+            int col = random.nextInt(BOARD_SIZE);
+
+            Coordinate coord = new Coordinate(row, col);
+            foundAvailablePosition = Board.isPositionAvailable(coord);
         }
-        return new int[]{row, col};
+        return new Coordinate(row, col);
     }
 }
-
