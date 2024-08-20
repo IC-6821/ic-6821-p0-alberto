@@ -20,6 +20,12 @@ public interface Board {
 
     Map<String, Column> getColumnMapping();
 
+    void setCell(Coordinate coord, Token playerSymbol);
+
+    boolean isPositionAvailable(Coordinate coord);
+
+    boolean makeMove(int row, int column, Token symbol);
+
     enum Row {
         TOP("arriba"), MIDDLE("medio"), BOTTOM("abajo");
 

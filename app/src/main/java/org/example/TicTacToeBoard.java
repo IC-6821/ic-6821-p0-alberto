@@ -90,4 +90,29 @@ public class TicTacToeBoard implements Board {
                 "derecha", Column.RIGHT
         );
     }
+
+    @Override
+    public void setCell(Coordinate coord, Token playerSymbol) {
+        if (isPositionAvailable(coord)) {
+            board[coord.getRow()][coord.getColumn()] = playerSymbol;
+        } else {
+            throw new IllegalArgumentException("Position is already occupied");
+        }
+    }
+
+    @Override
+    public boolean isPositionAvailable(Coordinate coord) {
+        return board[coord.getRow()][coord.getColumn()] == null;
+    }
+
+    @Override
+    public boolean makeMove(int row, int column, Token symbol) {
+        if (board[row][column] == null) {
+            board[row][column] = symbol;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
