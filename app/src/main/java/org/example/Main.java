@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Game game = new Game();
-        Board board = new Board();
+        TicTacToeBoard board = new TicTacToeBoard();
         ComputerPlayer computerPlayer = new ComputerPlayer();
         boolean gameOver = false;
 

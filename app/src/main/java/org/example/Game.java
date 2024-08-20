@@ -4,7 +4,7 @@ import java.util.List;
 
 public final class Game {
     public static final int gameBoardSize = 3;
-    public Board board;
+    public TicTacToeBoard board;
 
     private static final List<String> validMoves = Arrays.asList(
             "arriba izquierda", "arriba centro", "arriba derecha",
@@ -13,7 +13,7 @@ public final class Game {
     );
 
     public Game() {
-        board = new Board();
+        board = new TicTacToeBoard();
     }
 
     public boolean checkWin(char[][] gameBoard) {

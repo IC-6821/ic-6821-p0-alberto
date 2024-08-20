@@ -1,38 +1,18 @@
 package org.example;
 
 public class Coordinate {
-    private enum Row {
-        TOP("arriba"), MIDDLE("medio"), BOTTOM("abajo");
+    private int row;
+    private int column;
 
-        private String textValue;
-
-        Row(String textValue) {
-            this.textValue = textValue;
-        }
-
-        public String getTextValue() {
-            return textValue;
-        }
+    public int getRow() {
+        return row;
     }
 
-    private enum Column {
-        LEFT("izquierda"), CENTER("centro"), RIGHT("derecha");
-
-        private String textValue;
-
-        Column(String textValue) {
-            this.textValue = textValue;
-        }
-
-        public String getTextValue() {
-            return textValue;
-        }
+    public int getColumn() {
+        return column;
     }
 
-    private Row row;
-    private Column column;
-
-    public Coordinate(Row row, Column column) {
+    public Coordinate(int row, int column) {
         this.row = row;
         this.column = column;
     }

@@ -5,11 +5,11 @@ import java.util.Random;
 public class ComputerPlayer implements Player {
     public static final int BOARD_SIZE = 3;
 
-    public void makeMove(Board board, Board.Token playerSymbol) {
-        Board.setCell(generateCoordinatesEasy(board), playerSymbol);
+    public void makeMove(TicTacToeBoard board, TicTacToeBoard.Token playerSymbol) {
+        TicTacToeBoard.setCell(generateCoordinatesEasy(board), playerSymbol);
     }
 
-    public Coordinate generateCoordinatesEasy(Board board) {
+    public Coordinate generateCoordinatesEasy(TicTacToeBoard board) {
         Random random = new Random();
         boolean foundAvailablePosition = false;
         while (!foundAvailablePosition) {
@@ -17,7 +17,7 @@ public class ComputerPlayer implements Player {
             int col = random.nextInt(BOARD_SIZE);
 
             Coordinate coord = new Coordinate(row, col);
-            foundAvailablePosition = Board.isPositionAvailable(coord);
+            foundAvailablePosition = TicTacToeBoard.isPositionAvailable(coord);
         }
         return new Coordinate(row, col);
     }

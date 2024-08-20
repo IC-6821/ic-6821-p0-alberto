@@ -15,6 +15,22 @@ public class UserInterface {
             "derecha", Column.RIGHT
     );
 
+    /*
+    public void displayBoard() {
+        for (int i = 0; i < boardSize; i++) {
+            for (int j = 0; j < boardSize; j++) {
+                System.out.print(board[i][j]);
+                if (j < boardSize - 1) {
+                    System.out.print("|");
+                }
+            }
+            System.out.println();
+            if (i < boardSize - 1) {
+                System.out.println("-----");
+            }
+        }
+    }
+*/
 
     private static final String ENTER_MOVE_PROMPT = "> ";
     private static final String INVALID_INPUT_MESSAGE = "Input inválido. Intente de nuevo.";
