@@ -24,14 +24,14 @@ public interface Board {
 
     boolean isPositionAvailable(Coordinate coord);
 
-    boolean makeMove(int row, int column, Token symbol);
+    boolean makeMove(Coordinate coord, Token symbol);
 
     enum Row {
         TOP("arriba"), MIDDLE("medio"), BOTTOM("abajo");
 
         private final String textValue;
 
-        Row(String textValue) {
+        Row(final String textValue) {
             this.textValue = textValue;
         }
 
@@ -45,7 +45,7 @@ public interface Board {
 
         private final String textValue;
 
-        Column(String textValue) {
+        Column(final String textValue) {
             this.textValue = textValue;
         }
 

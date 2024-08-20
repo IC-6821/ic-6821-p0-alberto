@@ -1,9 +1,9 @@
 package org.example;
 import java.util.Map;
 
-public class TicTacToeBoard implements Board {
+public final class TicTacToeBoard implements Board {
+    private static final int BOARD_SIZE = 3;
     private final Token[][] board;
-    private final int BOARD_SIZE = 3;
 
     // Constructor
     public TicTacToeBoard() {
@@ -22,7 +22,7 @@ public class TicTacToeBoard implements Board {
 
     @Override
     public Token getCellValue(Coordinate cord) {
-        return board[cord.getRow()][cord.getColumn()];
+        return board[cord.row()][cord.column()];
     }
 
     @Override
@@ -94,7 +94,7 @@ public class TicTacToeBoard implements Board {
     @Override
     public void setCell(Coordinate coord, Token playerSymbol) {
         if (isPositionAvailable(coord)) {
-            board[coord.getRow()][coord.getColumn()] = playerSymbol;
+            board[coord.row()][coord.column()] = playerSymbol;
         } else {
             throw new IllegalArgumentException("Position is already occupied");
         }
@@ -102,13 +102,13 @@ public class TicTacToeBoard implements Board {
 
     @Override
     public boolean isPositionAvailable(Coordinate coord) {
-        return board[coord.getRow()][coord.getColumn()] == null;
+        return board[coord.row()][coord.column()] == null;
     }
 
     @Override
-    public boolean makeMove(int row, int column, Token symbol) {
-        if (board[row][column] == null) {
-            board[row][column] = symbol;
+    public boolean makeMove(Coordinate coord, Token symbol) {
+        if (board[coord.row()][coord.column()] == null) {
+            setCell(coord, symbol);
             return true;
         } else {
             return false;
