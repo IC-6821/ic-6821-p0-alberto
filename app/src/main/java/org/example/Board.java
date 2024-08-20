@@ -41,7 +41,7 @@ public interface Board {
     }
 
     enum Column {
-        LEFT("izquierda"), MIDDLE("medio"), RIGHT("derecha");
+        LEFT("izquierda"), MIDDLE("centro"), RIGHT("derecha");
 
         private final String textValue;
 

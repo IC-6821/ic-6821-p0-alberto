@@ -3,13 +3,13 @@ package org.example;
 public final class Game {
     private final TicTacToeBoard board;
     private final Player computerPlayer;
-    private final UserInterface userInterface;
+    private final ConsoleInterface userInterface;
     private boolean gameOver;
 
     public Game() {
         board = new TicTacToeBoard();
         computerPlayer = new ComputerPlayer();
-        userInterface = new UserInterface(board);
+        userInterface = new ConsoleInterface(board);
         gameOver = false;
     }
 
