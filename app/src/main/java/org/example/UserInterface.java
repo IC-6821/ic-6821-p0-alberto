@@ -1,62 +1,68 @@
 package org.example;
-import java.util.Map;
+
 import java.util.Scanner;
 
 public class UserInterface {
-    private static final Map<String, Row> ROW_MAPPING = Map.of(
-            "arriba", Row.TOP,
-            "medio", Row.MIDDLE,
-            "abajo", Row.BOTTOM
-    );
+    private TicTacToeBoard board;
 
-    private static final Map<String, Column> COLUMN_MAPPING = Map.of(
-            "izquierda", Column.LEFT,
-            "centro", Column.CENTER,
-            "derecha", Column.RIGHT
-    );
+    public static final int BOARD_SIZE = 3;
+    public static final int PARTS_IN_USER_INPUT = 2;
+    public static final String ENTER_MOVE_PROMPT = "> ";
+    public static final String INVALID_INPUT_MESSAGE = "Input inválido. Intente de nuevo.";
+    public static final String WIN_MESSAGE = "Has ganado!";
+    public static final String DRAW_MESSAGE = "Empate!";
+    public static final String COMPUTER_WIN_MESSAGE = "La computadora ha ganado!";
+    public static final String BOARD_SEPARATOR = "-----";
 
-    /*
-    public void displayBoard() {
-        for (int i = 0; i < boardSize; i++) {
-            for (int j = 0; j < boardSize; j++) {
-                System.out.print(board[i][j]);
-                if (j < boardSize - 1) {
-                    System.out.print("|");
-                }
-            }
-            System.out.println();
-            if (i < boardSize - 1) {
-                System.out.println("-----");
-            }
-        }
+    public UserInterface(TicTacToeBoard board) {
+        this.board = board;
     }
-*/
 
-    private static final String ENTER_MOVE_PROMPT = "> ";
-    private static final String INVALID_INPUT_MESSAGE = "Input inválido. Intente de nuevo.";
+    public void displayGameStateMessage() {
+        System.out.println(WIN_MESSAGE);
+    }
 
-    public void startGame() {
+    public void displayLosingMessage() {
+        System.out.println(COMPUTER_WIN_MESSAGE);
+    }
+
+    public void displayDrawMessage() {
+        System.out.println(DRAW_MESSAGE);
+    }
+
+    public void displayEnterMovePrompt() {
+        System.out.print(ENTER_MOVE_PROMPT);
+    }
+
+    public void displayBoard(TicTacToeBoard board) {
+        //falta implementacion
+    }
+
+    public Coordinate getUserInput(TicTacToeBoard board) {
         Scanner scanner = new Scanner(System.in);
-        boolean playing = true;
-
-        while (playing) {
-            //displayBoard
-            System.out.print(ENTER_MOVE_PROMPT);
-            String userInput = scanner.nextLine();
-
-            try {
-                Coordinate coordinate = convertUserInputToCoordinate(userInput);
-            } catch (IllegalArgumentException e) {
-                System.out.println(INVALID_INPUT_MESSAGE);
-            }
+        displayEnterMovePrompt();
+        String userInput = scanner.nextLine();
+        scanner.close();
+        try {
+            return convertUserInputToCoordinate(userInput, board);
+        } catch (IllegalArgumentException e) {
+            System.out.println(INVALID_INPUT_MESSAGE);
+            return getUserInput(board);
         }
     }
 
-    private Coordinate convertUserInputToCoordinate(String userInput) {
+    public Coordinate convertUserInputToCoordinate(String userInput, TicTacToeBoard board) {
         String[] parts = userInput.split(" ");
-        Row row = ROW_MAPPING.get(parts[0]);
-        Column column = COLUMN_MAPPING.get(parts[1]);
-        return new Coordinate(row, column);
+        if (parts.length != PARTS_IN_USER_INPUT) {
+            throw new IllegalArgumentException("Input inválido");
+        }
+        Board.Row row = board.getRowMapping().get(parts[0].toLowerCase());
+        Board.Column column = board.getColumnMapping().get(parts[1].toLowerCase());
+        if (row == null || column == null) {
+            throw new IllegalArgumentException("Input inválido");
+        }
+        int rowIndex = row.ordinal();
+        int columnIndex = column.ordinal();
+        return new Coordinate(rowIndex, columnIndex);
     }
 }
-
