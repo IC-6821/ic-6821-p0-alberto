@@ -35,7 +35,19 @@ public final class UserInterface {
     }
 
     public void displayBoard(TicTacToeBoard board) {
-        //falta implementacion
+        for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            Coordinate cord = new Coordinate(i, j);
+            System.out.print(board.getCellValue(cord));
+            if (j < BOARD_SIZE - 1) {
+                System.out.print("|");
+            }
+        }
+        System.out.println();
+        if (i < BOARD_SIZE - 1) {
+            System.out.println(BOARD_SEPARATOR);
+        }
+    }
     }
 
     public Coordinate getUserInput(TicTacToeBoard board) {
