@@ -33,7 +33,7 @@ public final class Game {
             userInterface.displayGameStateMessage();
             gameOver = true;
         } else if (board.checkDraw()) {
-            userInterface.displayLosingMessage();
+            userInterface.displayDrawMessage();
             gameOver = true;
         }
     }
