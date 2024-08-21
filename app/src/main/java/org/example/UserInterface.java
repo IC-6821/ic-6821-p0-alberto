@@ -51,10 +51,9 @@ public final class UserInterface {
     }
 
     public Coordinate getUserInput(TicTacToeBoard board) {
-        final Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         displayEnterMovePrompt();
         final String userInput = scanner.nextLine();
-        scanner.close();
         try {
             return convertUserInputToCoordinate(userInput, board);
         } catch (IllegalArgumentException e) {

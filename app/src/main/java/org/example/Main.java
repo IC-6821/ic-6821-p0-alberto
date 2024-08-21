@@ -1,5 +1,4 @@
 package org.example;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,8 +15,6 @@ public class Main {
                 System.out.println(errorMessage);
             }
         }
-
-        // ComputerPlayer(level);
 
         Game game = new Game();
         try {
