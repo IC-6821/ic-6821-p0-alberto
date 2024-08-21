@@ -2,11 +2,11 @@ package org.example;
 
 import java.util.Map;
 
-public final class TicTacToeBoard implements Board {
+public final class TicTacToeBoardInterface implements BoardInterface {
     public static final int BOARD_SIZE = 3;
     private final Token[][] board;
 
-    public TicTacToeBoard() {
+    public TicTacToeBoardInterface() {
         board = new Token[BOARD_SIZE][BOARD_SIZE];
         initializeBoard();
     }

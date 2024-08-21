@@ -1,14 +1,14 @@
 package org.example;
 
 public final class Game {
-    private final TicTacToeBoard board;
-    private final Player computerPlayer;
+    private final TicTacToeBoardInterface board;
+    private final PlayerInterface computerPlayerInterface;
     private final ConsoleInterface userInterface;
     private boolean gameOver;
 
     public Game() {
-        board = new TicTacToeBoard();
-        computerPlayer = new ComputerPlayer();
+        board = new TicTacToeBoardInterface();
+        computerPlayerInterface = new ComputerPlayerInterface();
         userInterface = new ConsoleInterface();
         gameOver = false;
     }
@@ -17,10 +17,10 @@ public final class Game {
         userInterface.displayBoard(board);
         while (!gameOver) {
             final Coordinate coord = userInterface.getUserInput(board);
-            if (board.makeMove(coord, TicTacToeBoard.Token.X)) {
+            if (board.makeMove(coord, TicTacToeBoardInterface.Token.X)) {
                 checkGameState();
                 if (!gameOver) {
-                    computerPlayer.makeMove(board, TicTacToeBoard.Token.O);
+                    computerPlayerInterface.makeMove(board, TicTacToeBoardInterface.Token.O);
                     checkGameState();
                 }
             }
@@ -29,10 +29,10 @@ public final class Game {
     }
 
     private void checkGameState() {
-        if (board.checkWin(TicTacToeBoard.Token.X)) {
+        if (board.checkWin(TicTacToeBoardInterface.Token.X)) {
             userInterface.displayGameStateMessage();
             gameOver = true;
-        } else if (board.checkWin(TicTacToeBoard.Token.O)) {
+        } else if (board.checkWin(TicTacToeBoardInterface.Token.O)) {
             userInterface.displayLosingMessage();
             gameOver = true;
         } else if (board.checkDraw()) {

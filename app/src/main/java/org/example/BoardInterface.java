@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Map;
 
-public interface Board {
+public interface BoardInterface {
 
     enum Token {
         X, O

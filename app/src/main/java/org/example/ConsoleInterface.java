@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-import static org.example.TicTacToeBoard.BOARD_SIZE;
+import static org.example.TicTacToeBoardInterface.BOARD_SIZE;
 
 public final class ConsoleInterface implements UserInterface {
     public static final int PARTS_IN_USER_INPUT = 2;
@@ -34,7 +34,7 @@ public final class ConsoleInterface implements UserInterface {
     }
 
     @Override
-    public void displayBoard(TicTacToeBoard board) {
+    public void displayBoard(TicTacToeBoardInterface board) {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 final Coordinate coordinate = new Coordinate(i, j);
@@ -54,7 +54,7 @@ public final class ConsoleInterface implements UserInterface {
     }
 
     @Override
-    public Coordinate getUserInput(TicTacToeBoard board) {
+    public Coordinate getUserInput(TicTacToeBoardInterface board) {
         final Scanner scanner = new Scanner(System.in);
         displayEnterMovePrompt();
         final String userInput = scanner.nextLine();
@@ -66,13 +66,13 @@ public final class ConsoleInterface implements UserInterface {
         }
     }
 
-    public Coordinate convertUserInputToCoordinate(String userInput, TicTacToeBoard board) {
+    public Coordinate convertUserInputToCoordinate(String userInput, TicTacToeBoardInterface board) {
         final String[] parts = userInput.split(" ");
         if (parts.length != PARTS_IN_USER_INPUT) {
             throw new IllegalArgumentException("Input inválido");
         }
-        final Board.Row row = board.getRowMapping().get(parts[0].toLowerCase());
-        final Board.Column column = board.getColumnMapping().get(parts[1].toLowerCase());
+        final BoardInterface.Row row = board.getRowMapping().get(parts[0].toLowerCase());
+        final BoardInterface.Column column = board.getColumnMapping().get(parts[1].toLowerCase());
         if (row == null || column == null) {
             throw new IllegalArgumentException("Input inválido");
         }

@@ -9,7 +9,7 @@ public interface UserInterface {
 
     void displayEnterMovePrompt();
 
-    void displayBoard(TicTacToeBoard board);
+    void displayBoard(TicTacToeBoardInterface board);
 
-    Coordinate getUserInput(TicTacToeBoard board);
+    Coordinate getUserInput(TicTacToeBoardInterface board);
 }

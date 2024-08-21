@@ -2,14 +2,14 @@ package org.example;
 
 import java.util.Random;
 
-import static org.example.TicTacToeBoard.BOARD_SIZE;
+import static org.example.TicTacToeBoardInterface.BOARD_SIZE;
 
-public final class ComputerPlayer implements Player {
-    public void makeMove(TicTacToeBoard board, TicTacToeBoard.Token playerSymbol) {
+public final class ComputerPlayerInterface implements PlayerInterface {
+    public void makeMove(TicTacToeBoardInterface board, TicTacToeBoardInterface.Token playerSymbol) {
         board.setCell(generateCoordinatesEasy(board), playerSymbol);
     }
 
-    public Coordinate generateCoordinatesEasy(TicTacToeBoard board) {
+    public Coordinate generateCoordinatesEasy(TicTacToeBoardInterface board) {
         final Random random = new Random();
         int row = 0;
         int col = 0;
