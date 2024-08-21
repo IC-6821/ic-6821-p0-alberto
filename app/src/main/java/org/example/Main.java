@@ -3,6 +3,7 @@ package org.example;
 public final class Main {
     private Main() {
     }
+
     public static void main(String[] args) {
         final String errorMessage = "";
         final int maxLevel = 3;

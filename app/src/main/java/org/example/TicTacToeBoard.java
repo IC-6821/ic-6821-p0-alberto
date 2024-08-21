@@ -6,7 +6,6 @@ public final class TicTacToeBoard implements Board {
     public static final int BOARD_SIZE = 3;
     private final Token[][] board;
 
-    // Constructor
     public TicTacToeBoard() {
         board = new Token[BOARD_SIZE][BOARD_SIZE];
         initializeBoard();
@@ -27,11 +26,8 @@ public final class TicTacToeBoard implements Board {
     }
 
     @Override
-    public boolean checkWin() {
-        if (checkDraw()) {
-            return false;
-        }
-        return checkRows() || checkColumns() || checkDiagonals();
+    public boolean checkWin(Token symbol) {
+        return checkRows(symbol) || checkColumns(symbol) || checkDiagonals(symbol);
     }
 
     @Override
@@ -46,36 +42,27 @@ public final class TicTacToeBoard implements Board {
         return true;
     }
 
-    private boolean checkRows() {
+    private boolean checkRows(Token symbol) {
         for (int row = 0; row < BOARD_SIZE; row++) {
-            if (board[row][0] != null && board[row][0] == board[row][1] && board[row][1] == board[row][2]) {
+            if (board[row][0] == symbol && board[row][1] == symbol && board[row][2] == symbol) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean checkColumns() {
+    private boolean checkColumns(Token symbol) {
         for (int column = 0; column < BOARD_SIZE; column++) {
-            final Token firstToken = board[0][column];
-            final Token secondToken = board[1][column];
-            final Token thirdToken = board[2][column];
-
-            if (firstToken != null && firstToken == secondToken && secondToken == thirdToken) {
+            if (board[0][column] == symbol && board[1][column] == symbol && board[2][column] == symbol) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean checkDiagonals() {
-        if (board[0][0] != null && board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
-            return true;
-        }
-        if (board[0][2] != null && board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
-            return true;
-        }
-        return false;
+    private boolean checkDiagonals(Token symbol) {
+        return (board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol)
+                || (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol);
     }
 
     @Override

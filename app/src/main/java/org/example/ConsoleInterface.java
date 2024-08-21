@@ -10,7 +10,7 @@ public final class ConsoleInterface implements UserInterface {
     public static final String INVALID_INPUT_MESSAGE = "Input inválido. Intente de nuevo.";
     public static final String WIN_MESSAGE = "Has ganado!";
     public static final String DRAW_MESSAGE = "Empate!";
-    public static final String COMPUTER_WIN_MESSAGE = "La computadora ha ganado!";
+    public static final String COMPUTER_WIN_MESSAGE = "Has perdido!";
     public static final String BOARD_SEPARATOR = "-----------";
 
     @Override

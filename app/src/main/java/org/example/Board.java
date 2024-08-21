@@ -10,7 +10,7 @@ public interface Board {
 
     Token getCellValue(Coordinate cord);
 
-    boolean checkWin();
+    boolean checkWin(Token symbol);
 
     boolean checkDraw();
 

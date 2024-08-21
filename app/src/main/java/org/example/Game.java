@@ -29,8 +29,11 @@ public final class Game {
     }
 
     private void checkGameState() {
-        if (board.checkWin()) {
+        if (board.checkWin(TicTacToeBoard.Token.X)) {
             userInterface.displayGameStateMessage();
+            gameOver = true;
+        } else if (board.checkWin(TicTacToeBoard.Token.O)) {
+            userInterface.displayLosingMessage();
             gameOver = true;
         } else if (board.checkDraw()) {
             userInterface.displayDrawMessage();
