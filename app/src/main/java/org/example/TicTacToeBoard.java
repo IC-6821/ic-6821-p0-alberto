@@ -38,7 +38,7 @@ public final class TicTacToeBoard implements Board {
         for (int row = 0; row < BOARD_SIZE; row++) {
             for (int column = 0; column < BOARD_SIZE; column++) {
                 if (board[row][column] == null) {
-                    return false; // Hay al menos una celda vacía
+                    return false;
                 }
             }
         }
@@ -86,7 +86,7 @@ public final class TicTacToeBoard implements Board {
     public Map<String, Column> getColumnMapping() {
         return Map.of(
                 "izquierda", Column.LEFT,
-                "medio", Column.MIDDLE,
+                "centro", Column.MIDDLE,
                 "derecha", Column.RIGHT
         );
     }

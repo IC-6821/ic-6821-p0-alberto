@@ -18,14 +18,12 @@ public final class Game {
         boolean validMove = false;
         while (!gameOver) {
             final Coordinate coord = userInterface.getUserInput(board);
-            while (!validMove) {
-                if (board.makeMove(coord, TicTacToeBoard.Token.X)) {
-                    validMove = true;
-                }
-            }
-            if (!gameOver) {
-                computerPlayer.makeMove(board, TicTacToeBoard.Token.O);
+            if (board.makeMove(coord, TicTacToeBoard.Token.X)) {
                 checkGameState();
+                if (!gameOver) {
+                    computerPlayer.makeMove(board, TicTacToeBoard.Token.O);
+                    checkGameState();
+                }
             }
             userInterface.displayBoard(board);
         }

@@ -12,7 +12,7 @@ public final class ConsoleInterface implements UserInterface{
     public static final String WIN_MESSAGE = "Has ganado!";
     public static final String DRAW_MESSAGE = "Empate!";
     public static final String COMPUTER_WIN_MESSAGE = "La computadora ha ganado!";
-    public static final String BOARD_SEPARATOR = "-----";
+    public static final String BOARD_SEPARATOR = "-----------";
 
     public ConsoleInterface(final TicTacToeBoard board) {
         this.board = board;
@@ -43,7 +43,7 @@ public final class ConsoleInterface implements UserInterface{
         for (int i = 0; i < BOARD_SIZE; i++) {
         for (int j = 0; j < BOARD_SIZE; j++) {
             Coordinate coordinate= new Coordinate(i, j);
-            String displayValue = board.getCellValue(coordinate) == null ? " " : String.format("%s", board.getCellValue(coordinate).toString());
+            String displayValue = board.getCellValue(coordinate) == null ? "   " : String.format(" %s ", board.getCellValue(coordinate).toString());
             System.out.print(displayValue);
             if (j < BOARD_SIZE - 1) {
                 System.out.print("|");
