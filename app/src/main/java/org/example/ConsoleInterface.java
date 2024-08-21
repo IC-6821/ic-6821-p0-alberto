@@ -2,10 +2,9 @@ package org.example;
 
 import java.util.Scanner;
 
-public final class ConsoleInterface implements UserInterface {
-    private TicTacToeBoard board;
+import static org.example.TicTacToeBoard.BOARD_SIZE;
 
-    public static final int BOARD_SIZE = 3;
+public final class ConsoleInterface implements UserInterface {
     public static final int PARTS_IN_USER_INPUT = 2;
     public static final String ENTER_MOVE_PROMPT = "> ";
     public static final String INVALID_INPUT_MESSAGE = "Input inválido. Intente de nuevo.";
@@ -13,10 +12,6 @@ public final class ConsoleInterface implements UserInterface {
     public static final String DRAW_MESSAGE = "Empate!";
     public static final String COMPUTER_WIN_MESSAGE = "La computadora ha ganado!";
     public static final String BOARD_SEPARATOR = "-----------";
-
-    public ConsoleInterface(final TicTacToeBoard board) {
-        this.board = board;
-    }
 
     @Override
     public void displayGameStateMessage() {

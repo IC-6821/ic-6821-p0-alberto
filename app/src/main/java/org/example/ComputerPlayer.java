@@ -1,10 +1,9 @@
 package org.example;
 
 import java.util.Random;
+import static org.example.TicTacToeBoard.BOARD_SIZE;
 
 public final class ComputerPlayer implements Player {
-    public static final int BOARD_SIZE = 3;
-
     public void makeMove(TicTacToeBoard board, TicTacToeBoard.Token playerSymbol) {
         board.setCell(generateCoordinatesEasy(board), playerSymbol);
     }

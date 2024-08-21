@@ -3,7 +3,7 @@ package org.example;
 import java.util.Map;
 
 public final class TicTacToeBoard implements Board {
-    private static final int BOARD_SIZE = 3;
+    public static final int BOARD_SIZE = 3;
     private final Token[][] board;
 
     // Constructor

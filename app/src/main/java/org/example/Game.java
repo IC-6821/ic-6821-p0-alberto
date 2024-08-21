@@ -9,7 +9,7 @@ public final class Game {
     public Game() {
         board = new TicTacToeBoard();
         computerPlayer = new ComputerPlayer();
-        userInterface = new ConsoleInterface(board);
+        userInterface = new ConsoleInterface();
         gameOver = false;
     }
 
