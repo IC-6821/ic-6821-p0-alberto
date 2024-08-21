@@ -43,7 +43,9 @@ public final class ConsoleInterface implements UserInterface {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 final Coordinate coordinate = new Coordinate(i, j);
-                final String displayValue = board.getCellValue(coordinate) == null ? "   " : String.format(" %s ", board.getCellValue(coordinate).toString());
+                final String displayValue = (board.getCellValue(coordinate) == null)
+                        ? "   "
+                        : String.format(" %s ", board.getCellValue(coordinate).toString());
                 System.out.print(displayValue);
                 if (j < BOARD_SIZE - 1) {
                     System.out.print("|");
