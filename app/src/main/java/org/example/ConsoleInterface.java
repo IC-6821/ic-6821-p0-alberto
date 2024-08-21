@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.Scanner;
 
-public final class ConsoleInterface implements UserInterface{
+public final class ConsoleInterface implements UserInterface {
     private TicTacToeBoard board;
 
     public static final int BOARD_SIZE = 3;
@@ -41,24 +41,24 @@ public final class ConsoleInterface implements UserInterface{
     @Override
     public void displayBoard(TicTacToeBoard board) {
         for (int i = 0; i < BOARD_SIZE; i++) {
-        for (int j = 0; j < BOARD_SIZE; j++) {
-            Coordinate coordinate= new Coordinate(i, j);
-            String displayValue = board.getCellValue(coordinate) == null ? "   " : String.format(" %s ", board.getCellValue(coordinate).toString());
-            System.out.print(displayValue);
-            if (j < BOARD_SIZE - 1) {
-                System.out.print("|");
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                final Coordinate coordinate = new Coordinate(i, j);
+                final String displayValue = board.getCellValue(coordinate) == null ? "   " : String.format(" %s ", board.getCellValue(coordinate).toString());
+                System.out.print(displayValue);
+                if (j < BOARD_SIZE - 1) {
+                    System.out.print("|");
+                }
+            }
+            System.out.println();
+            if (i < BOARD_SIZE - 1) {
+                System.out.println(BOARD_SEPARATOR);
             }
         }
-        System.out.println();
-        if (i < BOARD_SIZE - 1) {
-            System.out.println(BOARD_SEPARATOR);
-        }
-    }
     }
 
     @Override
     public Coordinate getUserInput(TicTacToeBoard board) {
-        Scanner scanner = new Scanner(System.in);
+        final Scanner scanner = new Scanner(System.in);
         displayEnterMovePrompt();
         final String userInput = scanner.nextLine();
         try {

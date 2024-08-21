@@ -15,7 +15,6 @@ public final class Game {
 
     public void start() {
         userInterface.displayBoard(board);
-        boolean validMove = false;
         while (!gameOver) {
             final Coordinate coord = userInterface.getUserInput(board);
             if (board.makeMove(coord, TicTacToeBoard.Token.X)) {

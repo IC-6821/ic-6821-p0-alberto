@@ -1,4 +1,5 @@
 package org.example;
+
 import java.util.Map;
 
 public final class TicTacToeBoard implements Board {
@@ -56,7 +57,11 @@ public final class TicTacToeBoard implements Board {
 
     private boolean checkColumns() {
         for (int column = 0; column < BOARD_SIZE; column++) {
-            if (board[0][column] != null && board[0][column] == board[1][column] && board[1][column] == board[2][column]) {
+            final Token firstToken = board[0][column];
+            final Token secondToken = board[1][column];
+            final Token thirdToken = board[2][column];
+
+            if (firstToken != null && firstToken == secondToken && secondToken == thirdToken) {
                 return true;
             }
         }

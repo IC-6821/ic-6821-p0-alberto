@@ -2,7 +2,7 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        String errorMessage = "";
+        final String errorMessage = "";
         int level = 1;
         if (args.length > 0) {
             try {
@@ -16,7 +16,7 @@ public class Main {
             }
         }
 
-        Game game = new Game();
+        final Game game = new Game();
         try {
             game.start();
         } catch (Exception e) {
