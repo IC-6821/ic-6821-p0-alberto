@@ -38,7 +38,8 @@ public final class UserInterface {
         for (int i = 0; i < BOARD_SIZE; i++) {
         for (int j = 0; j < BOARD_SIZE; j++) {
             Coordinate cord = new Coordinate(i, j);
-            System.out.print(board.getCellValue(cord));
+            String displayValue = board.getCellValue(cord) == null ? " " : board.getCellValue(cord).toString();
+            System.out.print(displayValue);
             if (j < BOARD_SIZE - 1) {
                 System.out.print("|");
             }
