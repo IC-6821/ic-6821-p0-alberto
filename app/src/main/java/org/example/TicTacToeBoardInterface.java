@@ -84,23 +84,23 @@ public final class TicTacToeBoardInterface implements BoardInterface {
     }
 
     @Override
-    public void setCell(Coordinate coord, Token playerSymbol) {
-        if (isPositionAvailable(coord)) {
-            board[coord.row()][coord.column()] = playerSymbol;
+    public void setCell(Coordinate coordinate, Token playerSymbol) {
+        if (isPositionAvailable(coordinate)) {
+            board[coordinate.row()][coordinate.column()] = playerSymbol;
         } else {
             throw new IllegalArgumentException("Position is already occupied");
         }
     }
 
     @Override
-    public boolean isPositionAvailable(Coordinate coord) {
-        return board[coord.row()][coord.column()] == null;
+    public boolean isPositionAvailable(Coordinate coordinate) {
+        return board[coordinate.row()][coordinate.column()] == null;
     }
 
     @Override
-    public boolean makeMove(Coordinate coord, Token symbol) {
-        if (board[coord.row()][coord.column()] == null) {
-            setCell(coord, symbol);
+    public boolean makeMove(Coordinate coordinate, Token symbol) {
+        if (board[coordinate.row()][coordinate.column()] == null) {
+            setCell(coordinate, symbol);
             return true;
         } else {
             return false;

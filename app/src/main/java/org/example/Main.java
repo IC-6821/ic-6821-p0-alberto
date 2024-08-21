@@ -7,12 +7,12 @@ public final class Main {
     public static void main(String[] args) {
         final String errorMessage = "";
         final int maxLevel = 3;
-        final int minLvel = 1;
+        final int minLevel = 1;
         int level = 1;
         if (args.length > 0) {
             try {
                 level = Integer.parseInt(args[0]);
-                if (level < minLvel || level > maxLevel) {
+                if (level < minLevel || level > maxLevel) {
                     System.out.println(errorMessage);
                     level = 1;
                 }

@@ -12,15 +12,15 @@ public final class ComputerPlayerInterface implements PlayerInterface {
     public Coordinate generateCoordinatesEasy(TicTacToeBoardInterface board) {
         final Random random = new Random();
         int row = 0;
-        int col = 0;
+        int column = 0;
         boolean foundAvailablePosition = false;
         while (!foundAvailablePosition) {
             row = random.nextInt(BOARD_SIZE);
-            col = random.nextInt(BOARD_SIZE);
+            column = random.nextInt(BOARD_SIZE);
 
-            final Coordinate coord = new Coordinate(row, col);
-            foundAvailablePosition = board.isPositionAvailable(coord);
+            final Coordinate coordinate = new Coordinate(row, column);
+            foundAvailablePosition = board.isPositionAvailable(coordinate);
         }
-        return new Coordinate(row, col);
+        return new Coordinate(row, column);
     }
 }

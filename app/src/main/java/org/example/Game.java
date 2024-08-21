@@ -16,8 +16,8 @@ public final class Game {
     public void start() {
         userInterface.displayBoard(board);
         while (!gameOver) {
-            final Coordinate coord = userInterface.getUserInput(board);
-            if (board.makeMove(coord, TicTacToeBoardInterface.Token.X)) {
+            final Coordinate coordinate = userInterface.getUserInput(board);
+            if (board.makeMove(coordinate, TicTacToeBoardInterface.Token.X)) {
                 checkGameState();
                 if (!gameOver) {
                     computerPlayerInterface.makeMove(board, TicTacToeBoardInterface.Token.O);
