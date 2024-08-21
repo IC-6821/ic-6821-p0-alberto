@@ -1,39 +1,43 @@
 package org.example;
 
-public class Game {
+public final class Game {
     private final TicTacToeBoard board;
-    private final Player humanPlayer;
     private final Player computerPlayer;
+    private final UserInterface userInterface;
     private boolean gameOver;
 
     public Game() {
         board = new TicTacToeBoard();
-        humanPlayer = new HumanPlayer();
         computerPlayer = new ComputerPlayer();
+        userInterface = new UserInterface(board);
         gameOver = false;
     }
 
     public void start() {
-        UserInterface.showBoard();
+        userInterface.displayBoard(board);
+        boolean validMove = false;
         while (!gameOver) {
-            humanPlayer.makeMove(board, TicTacToeBoard.Token.X); //Asumiendo que maneja todo la logica
-            checkGameState();
+            final Coordinate coord = userInterface.getUserInput(board);
+            while (!validMove) {
+                if (board.makeMove(coord, TicTacToeBoard.Token.X)) {
+                    validMove = true;
+                }
+            }
             if (!gameOver) {
                 computerPlayer.makeMove(board, TicTacToeBoard.Token.O);
                 checkGameState();
             }
-            UserInterface.showBoard();
+            userInterface.displayBoard(board);
         }
     }
 
     private void checkGameState() {
         if (board.checkWin()) {
-            UserInterface.displayGameStateMessage();
+            userInterface.displayGameStateMessage();
             gameOver = true;
         } else if (board.checkDraw()) {
-            UserInterface.displayLosingMessage();
+            userInterface.displayLosingMessage();
             gameOver = true;
         }
     }
 }
-
